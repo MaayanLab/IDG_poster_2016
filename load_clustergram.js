@@ -27,7 +27,8 @@ function make_clust(inst_network){
         root: '#container-id-1',
         'network_data': network_data,
         'about':'Zoom, scroll, and click buttons to interact with the clustergram.',
-        'row_tip_callback':gene_info
+        'row_tip_callback':gene_info,
+        'tile_colors': ['#000000', '#1C86EE']
       };
 
       resize_container(args);

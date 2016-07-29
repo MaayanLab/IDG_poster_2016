@@ -9,7 +9,35 @@ def main():
   make_viz(ini_df, gene_classes)
 
 def make_viz(ini_df, gene_classes):
+  from clustergrammer import Network
+
   print('make visualization')
+
+  net = Network()
+
+  keep_rows = gene_classes['TF']
+
+  keep_rows.extend(gene_classes['KIN'])
+  keep_rows.extend(gene_classes['GPCR'])
+  keep_rows.extend(gene_classes['IC'])
+
+  print(len(keep_rows))
+  keep_rows = list(set(keep_rows))
+
+  print(len(keep_rows))
+
+  inst_df = ini_df.ix[keep_rows]
+
+  load_df = {}
+  load_df['mat'] = inst_df
+
+  net.df_to_dat(load_df)
+
+  net.swap_nan_for_zero()
+
+  net.make_clust(views=[])
+
+  net.write_json_to_file('viz', 'json/mult_view.json', 'no-indent')
 
 def load_hgram_matrix():
   import numpy as np
