@@ -1,0 +1,5 @@
+
+Make one figure with all families and one with just the four main families from before.
+
+GPCR, TC, KIN, IC
+

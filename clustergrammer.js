@@ -3459,7 +3459,7 @@ var Clustergrammer =
 	    }
 	    // }
 	  });
-
+	
 	  make_row_tooltips(params);
 
 	  // append rectangle behind text
@@ -10039,7 +10039,7 @@ var Clustergrammer =
 	  /* FileSaver.js
 	   * A saveAs() FileSaver implementation.
 	   * 2013-01-23
-	   *
+	   * 
 	   * By Eli Grey, http://eligrey.com
 	   * License: X11/MIT
 	   *   See LICENSE.md
