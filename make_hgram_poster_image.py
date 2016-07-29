@@ -29,7 +29,7 @@ def make_viz_with_cats(ini_df, gene_classes):
     name_string =  'Gene: ' + inst_row
 
     inst_type = get_gene_type(gene_classes, inst_row)
-    inst_type_string = 'Type: '+ inst_type
+    inst_type_string = 'Gene Type: '+ inst_type
     inst_tuple = (name_string, inst_type_string)
 
     new_rows.append(inst_tuple)
@@ -98,7 +98,7 @@ def load_hgram_matrix():
   col_names = []
   for i in range(len(tmp_col_names)):
     inst_name = 'Resource: ' + tmp_col_names[i]
-    inst_cat = 'Type: ' + tmp_col_cats[i]
+    inst_cat = 'Resource Type: ' + tmp_col_cats[i]
 
     inst_tuple = (inst_name, inst_cat)
 
