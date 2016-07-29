@@ -40,6 +40,7 @@ def make_viz_with_cats(ini_df, gene_classes):
 
   new_df = pd.DataFrame(data=mat, columns=col_names, index=new_rows)
 
+  print('make viz with row and col cats')
   make_viz_json(new_df, 'hgram_4_fam_with_cats.json')
 
 def make_viz_no_cats(ini_df, gene_classes):
@@ -90,10 +91,30 @@ def load_hgram_matrix():
 
   mat = hgram['mat']
   row_names = hgram['nodes']['row']
-  col_names = hgram['nodes']['col']
+  # will add resource category information to column names
+  tmp_col_names = hgram['nodes']['col']
+  tmp_col_cats = hgram['node_info']['col']['info']
+
+  col_names = []
+  for i in range(len(tmp_col_names)):
+    inst_name = 'Resource: ' + tmp_col_names[i]
+    inst_cat = 'Type: ' + tmp_col_cats[i]
+
+    inst_tuple = (inst_name, inst_cat)
+
+    col_names.append(inst_tuple)
+
+  # print(hgram.keys())
+  # print( len(hgram['node_info']['col']['info']) )
+  # print(len(hgram['nodes']['col']))
+
+  # col_names = tmp_col_names
 
   # nodes, and mat
   ini_df = pd.DataFrame(data=mat, columns=col_names, index=row_names)
+
+
+
 
   return ini_df
 
