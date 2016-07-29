@@ -22,15 +22,15 @@ def make_viz_with_cats(ini_df, gene_classes):
   inst_rows = inst_df.index.tolist()
   inst_cols = inst_df.columns.tolist()
 
-  print(len(inst_rows))
-  print(len(inst_cols))
-
   new_rows = []
   # add row categories
+
   for inst_row in inst_rows:
-    inst_row =  'Gene: ' + inst_row
-    inst_type = 'Type: type'
-    inst_tuple = (inst_row, inst_type)
+    name_string =  'Gene: ' + inst_row
+
+    inst_type = get_gene_type(gene_classes, inst_row)
+    inst_type_string = 'Type: '+ inst_type
+    inst_tuple = (name_string, inst_type_string)
 
     new_rows.append(inst_tuple)
 
@@ -51,13 +51,25 @@ def make_viz_no_cats(ini_df, gene_classes):
   make_viz_json(inst_df, 'hgram_4_fam_no_cats.json')
 
 def get_4_fam_genes(gene_classes):
-  keep_rows = gene_classes['TF']
+  keep_rows = []
+  keep_rows.extend(gene_classes['TF'])
   keep_rows.extend(gene_classes['KIN'])
   keep_rows.extend(gene_classes['GPCR'])
   keep_rows.extend(gene_classes['IC'])
   keep_rows = list(set(keep_rows))
 
   return keep_rows
+
+def get_gene_type(gene_classes, gene_name):
+  gene_type = 'NA'
+
+  for inst_type in gene_classes:
+    inst_genes = gene_classes[inst_type]
+
+    if gene_name in inst_genes:
+      gene_type = inst_type
+
+  return gene_type
 
 
 def make_viz_json(inst_df, name):
